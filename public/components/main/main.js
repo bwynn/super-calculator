@@ -1,12 +1,7 @@
-angular.module('components.main', [])
-    .controller('MainController', [function() {
+angular.module('MainController', [])
+    .controller('mainController', ['$scope', function($scope) {
 
-    }])
-    .config(function($stateProvider) {
-        $stateProvider
-            .state('main', {
-                url: '/',
-                templateUrl: 'components/main/main.html',
-                controller: 'MainController as mc'
-            });
-    });
+        // explicitly set primitive value to numeric value of 0
+        $scope.baseValue = Number(0);
+
+    }]);
