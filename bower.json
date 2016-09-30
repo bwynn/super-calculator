@@ -1,0 +1,22 @@
+{
+  "name": "ng_calc",
+  "description": "This Angular Calculator application is a standalone angular application that running on Angular 1.5, with a Node and Express back end. There is no database attached to this application, as it is intended to be utilized on a case-by-case basis.",
+  "main": "server.js",
+  "authors": [
+    "Brian Wynn"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
+  }
+}
