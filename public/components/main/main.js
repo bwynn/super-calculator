@@ -10,6 +10,21 @@ angular.module('MainController', [])
         // set $scope.addValue to be empty array
         $scope.valueArray = [];
 
+        // set keypad values
+        $scope.keypad = [];
+
+        // iife to populate and manipulate array values for population
+        (function() {
+            // populate keypad array
+            for (var i = 1; i < 10; i++) {
+                $scope.keypad.push(i);
+            }
+            // add 0 to last index
+            $scope.keypad.push(0);
+
+            return $scope.keypad;
+        })();
+
         // add number value to valueArray ->
         // when a user clicks on a number, it is added to the array
         $scope.addValueToArray = function(val) {

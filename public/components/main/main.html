@@ -1,1 +1,21 @@
-<div>{{hello}}</div>
+<div class="main-calculator-container">
+    <div class="value-container">
+        <span class="screen-value"></span>
+    </div>
+    <div class="number-buttons-container">
+        <!-- repeat buttons -->
+        <div class="button-container" ng-repeat="buttonValue in keypad">
+            <button class="btn btn-val">{{buttonValue}}</button>
+        </div>
+    </div>
+    <div class="operations-container">
+        <div class="button-container">
+            <button class="btn btn-operation"></button>
+        </div>
+    </div>
+    <div class="evaluation-container">
+        <div class="button-container">
+            <button class="btn btn-eval"></button>
+        </div>
+    </div>
+</div>

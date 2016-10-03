@@ -59,6 +59,32 @@ describe('mainController', function() {
         });
     });
 
+    describe('$scope.keypad', function() {
+        it('should be defined', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            expect($scope.keypad).toBeDefined();
+        });
+
+        it('should have a length of 10', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            expect($scope.keypad.length).toBe(10);
+        });
+
+        it('should start with 1', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            expect($scope.keypad[0]).toEqual(1);
+        });
+
+        it('should end with 0', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            expect($scope.keypad[9]).toEqual(0);
+        });
+    });
+
     // user interaction events -------------------------------------------------
 
     describe('$scope.addValueToArray', function() {

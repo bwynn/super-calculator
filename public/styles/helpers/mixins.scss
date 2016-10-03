@@ -1,0 +1,6 @@
+// MIXINS
+
+@mixin fullHeightWidth {
+    height: $full;
+    width: $full; 
+}

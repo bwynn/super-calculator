@@ -1,0 +1,15 @@
+.main-calculator-container {
+    border: 1px solid $highlight-mid;
+    .value-container {
+        border: 1px solid $highlight-mid;
+    }
+    .number-buttons-container {
+        border: 1px solid $highlight-mid;
+    }
+    .operations-container {
+        border: 1px solid $highlight-mid;
+    }
+    .evaluation-container {
+        border: 1px solid $highlight-mid;
+    }
+}

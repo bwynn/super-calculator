@@ -1,0 +1,19 @@
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #151818;
+  color: #008484;
+  margin: 0; }
+
+.main-calculator-container {
+  border: 1px solid #007272; }
+  .main-calculator-container .value-container {
+    border: 1px solid #007272; }
+  .main-calculator-container .number-buttons-container {
+    border: 1px solid #007272; }
+  .main-calculator-container .operations-container {
+    border: 1px solid #007272; }
+  .main-calculator-container .evaluation-container {
+    border: 1px solid #007272; }
+
+/*# sourceMappingURL=main.css.map */

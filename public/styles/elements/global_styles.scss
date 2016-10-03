@@ -1,0 +1,8 @@
+// GLOBAL STYLES
+
+body {
+    @include fullHeightWidth;
+    background-color: $primary-dark;
+    color: $highlight-light;
+    margin: 0; 
+}
