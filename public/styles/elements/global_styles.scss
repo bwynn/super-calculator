@@ -4,5 +4,11 @@ body {
     @include fullHeightWidth;
     background-color: $primary-dark;
     color: $highlight-light;
-    margin: 0; 
+    margin: 0;
+}
+
+.calc-wrap {
+    max-width: $max-width;
+    margin: $center;
+    width: $full;
 }

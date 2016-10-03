@@ -5,6 +5,11 @@ body {
   color: #008484;
   margin: 0; }
 
+.calc-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%; }
+
 .main-calculator-container {
   border: 1px solid #007272; }
   .main-calculator-container .value-container {
