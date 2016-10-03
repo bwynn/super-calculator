@@ -2,19 +2,87 @@ angular.module('MainController', [])
     .controller('mainController', ['$scope', function($scope) {
 
         // set undefined $scope variables
-        $scope.x, $scope.y;
+        $scope.x, $scope.y, $scope.operation;
 
         // explicitly set primitive value to numeric value of 0
         $scope.baseValue = Number(0);
 
-        // set $scope.operation to be undefined
-        $scope.operation = undefined;
+        // set $scope.addValue to be empty array
+        $scope.valueArray = [];
 
-        // SET X VALUE 
+        // add number value to valueArray ->
+        // when a user clicks on a number, it is added to the array
+        $scope.addValueToArray = function(val) {
 
-        // SET Y VALUE
+            var newVal;
+
+            if (typeof val !== 'number') {
+                newVal = Number(val);
+            } else {
+                newVal = val;
+            }
+
+            // push button's value into the valueArray
+            $scope.valueArray.push(newVal);
+
+            return $scope.valueArray;
+        };
+
+        // SET VALUE when user clicks on operation method
+        $scope.setVal = function(val) {
+
+            // declare undefined paramValue to set param to
+            var paramValue,
+                stringNum = val;
+
+            // flatten the array into one number
+            var flattenedNum = stringNum.join("");
+
+            // if baseValue !== 0, set to $scope.x;
+            // when the baseValue is being continued in the operation,
+            // setting the baseValue to $scope.x will allow the equation to continue on
+            if (typeof $scope.baseValue !== undefined) {
+                $scope.x = $scope.baseValue;
+            }
+
+            // coerce value array into a number
+            if (typeof flattenedNum !== "number") {
+                paramValue = Number(flattenedNum);
+            } else {
+                paramValue = val; // should never get here, but just in case...
+            }
+
+            // if $scope.x is defined, set $scope.y
+            if (typeof $scope.x === 'number') {
+                $scope.y = paramValue;
+            } else {
+                $scope.x = paramValue;
+            }
+
+            // set $scope.addValue to empty array;
+            $scope.addValue = [];
+        };
 
         // CLEAR BASE VALUE
+        $scope.clearBaseValue = function() {
+
+            // set both x and y values to be undefined
+            $scope.x = undefined;
+            $scope.y = undefined;
+
+            // check to make sure that baseValue type is number
+            if (typeof $scope.baseValue !== 'number') {
+                // if not, coerce to number
+                $scope.baseValue = Number();
+            }
+
+            // if $scope.baseValue = 0 -> return
+            if ($scope.baseValue !== 0) {
+                return $scope.baseValue = 0;
+            } else {
+                return;
+            }
+        };
 
         // SCOPE EQUATION METHODS ----------------------------------------------
         //
