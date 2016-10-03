@@ -76,8 +76,8 @@ angular.module('MainController', [])
                 $scope.x = paramValue;
             }
 
-            // set $scope.addValue to empty array;
-            $scope.addValue = [];
+            // set $scope.valueArray to empty array;
+            $scope.valueArray = [];
         };
 
         // CLEAR BASE VALUE
