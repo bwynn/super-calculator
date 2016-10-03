@@ -14,8 +14,10 @@ angular.module('MainController', [])
         // when a user clicks on a number, it is added to the array
         $scope.addValueToArray = function(val) {
 
+            // set newVal as undefined
             var newVal;
 
+            // set newVal value, coerce if needed
             if (typeof val !== 'number') {
                 newVal = Number(val);
             } else {
@@ -46,7 +48,7 @@ angular.module('MainController', [])
             }
 
             // coerce value array into a number
-            if (typeof flattenedNum !== "number") {
+            if (typeof flattenedNum !== 'number') {
                 paramValue = Number(flattenedNum);
             } else {
                 paramValue = val; // should never get here, but just in case...
@@ -98,14 +100,9 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x + $scope.y;
             };
             // set the case for the operation
-            var operation = function() {
-                return $scope.operation = "add";
-            };
+            $scope.operation = "add";
 
-            return {
-                evaluate : evaluate,
-                operation: operation
-            };
+            return evaluate();
         };
 
         // method for subtraction
@@ -115,14 +112,9 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x - $scope.y;
             };
             // set the case for the operation
-            var operation = function() {
-                return $scope.operation = "subtract";
-            };
+            $scope.operation = "subtract";
 
-            return {
-                evaluate: evaluate,
-                operation: operation
-            };
+            return evaluate();
         };
 
         // method for multiplication
@@ -132,14 +124,9 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x * $scope.y;
             };
             // set case for operation
-            var operation = function() {
-                return $scope.operation = "multiply";
-            };
+            $scope.operation = "multiply";
 
-            return {
-                evaluate: evaluate,
-                operation: operation
-            };
+            return evaluate();
         };
 
         // method for division
@@ -149,14 +136,9 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x / $scope.y;
             };
             // set case for operation
-            var operation = function() {
-                return $scope.operation = "divide";
-            };
+            $scope.operation = "divide";
 
-            return {
-                evaluate: evaluate,
-                operation: operation
-            };
+            return evaluate();
         };
 
         // EQUALS EVALUATION SWITCH CASE ---------------------------------------
@@ -166,16 +148,16 @@ angular.module('MainController', [])
         $scope.equals = function() {
             switch ($scope.operation) {
                 case "add":
-                    $scope.add().evaluate();
+                    $scope.add();
                     break;
                 case "subtract":
-                    $scope.subtract().evaluate();
+                    $scope.subtract();
                     break;
                 case "multiply":
-                    $scope.multiply().evaluate();
+                    $scope.multiply();
                     break;
                 case "divide":
-                    $scope.divide().evaluate();
+                    $scope.divide();
                     break;
             }
         };

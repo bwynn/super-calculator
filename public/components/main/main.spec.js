@@ -157,14 +157,14 @@ describe('mainController', function() {
             var controller = $controller('mainController', {$scope: $scope});
             $scope.x = 2;
             $scope.y = 4;
-            $scope.add().evaluate();
+            $scope.add();
             expect($scope.baseValue).toEqual(6);
         });
 
         it('should set $scope.operation to "add"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.add().operation();
+            $scope.add();
             expect($scope.operation).toBe("add");
         });
     });
@@ -182,7 +182,7 @@ describe('mainController', function() {
             var controller = $controller('mainController', {$scope: $scope});
             $scope.x = 6;
             $scope.y = 3;
-            $scope.subtract().evaluate();
+            $scope.subtract();
             expect($scope.baseValue).toEqual(3);
 
         });
@@ -190,7 +190,7 @@ describe('mainController', function() {
         it('should set $scope.operation to "subtract"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.subtract().operation();
+            $scope.subtract();
             expect($scope.operation).toBe("subtract");
         });
     });
@@ -208,14 +208,14 @@ describe('mainController', function() {
             var controller = $controller('mainController', {$scope: $scope});
             $scope.x = 5;
             $scope.y = 3;
-            $scope.multiply().evaluate();
+            $scope.multiply();
             expect($scope.baseValue).toEqual(15);
         });
 
         it('should set $scope.operation to "multiply"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.multiply().operation();
+            $scope.multiply();
             expect($scope.operation).toBe("multiply");
         });
     });
@@ -233,14 +233,14 @@ describe('mainController', function() {
             var controller = $controller('mainController', {$scope: $scope});
             $scope.x = 60;
             $scope.y = 5;
-            $scope.divide().evaluate();
+            $scope.divide();
             expect($scope.baseValue).toEqual(12);
         });
 
         it('should set $scope.operation to "divide"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.divide().operation();
+            $scope.divide();
             expect($scope.operation).toBe("divide");
         });
     });
