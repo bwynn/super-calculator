@@ -42,12 +42,12 @@ describe('mainController', function() {
         });
     });
 
-    describe('$scope.valueArray', function() {
-        it('should be defined as an array', function() {
+    describe('$scope.valueString', function() {
+        it('should be defined as a string', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect(typeof $scope.valueArray).toBe('object');
-            expect($scope.valueArray).toEqual([]);
+            expect(typeof $scope.valueString).toBe('string');
+            expect($scope.valueString).toEqual("0");
         });
     });
 
@@ -87,19 +87,19 @@ describe('mainController', function() {
 
     // user interaction events -------------------------------------------------
 
-    describe('$scope.addValueToArray', function() {
+    describe('$scope.addValueToString', function() {
 
         it('should be defined', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.addValueToArray).toBeDefined();
+            expect($scope.addValueToString).toBeDefined();
         });
 
-        it('should push a number value into the valueArray object', function() {
+        it('should concatenate the parameter number to the valueString value', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.addValueToArray("10");
-            expect($scope.valueArray).toEqual([10]);
+            $scope.addValueToString(9);
+            expect($scope.valueString).toEqual("9");
         });
     });
 
@@ -115,7 +115,7 @@ describe('mainController', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.baseValue = 10;
-            $scope.setVal([23]);
+            $scope.setVal("23");
             expect($scope.x).toEqual(10);
             expect($scope.y).toEqual(23);
         });
@@ -124,7 +124,7 @@ describe('mainController', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.x = 10;
-            $scope.setVal([1,2,3]);
+            $scope.setVal('123');
             expect(typeof $scope.y).toBe('number');
             expect($scope.y).toEqual(123);
         });
@@ -132,8 +132,8 @@ describe('mainController', function() {
         it('should set valueArray to an empty array', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.setVal([1,2,3]);
-            expect($scope.valueArray).toEqual([]);
+            $scope.setVal("123");
+            expect($scope.valueString).toEqual("0");
         });
     });
 
@@ -326,10 +326,10 @@ describe('mainController', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.baseValue = 12;
-            $scope.addValueToArray("1");
-            $scope.addValueToArray("2");
-            $scope.addValueToArray("3");
-            $scope.setVal($scope.valueArray);
+            $scope.addValueToString("1");
+            $scope.addValueToString("2");
+            $scope.addValueToString("3");
+            $scope.setVal($scope.valueString);
             expect($scope.x).toEqual(12);
             expect($scope.y).toEqual(123);
         });

@@ -8,7 +8,7 @@ angular.module('MainController', [])
         $scope.baseValue = Number(0);
 
         // set $scope.addValue to be empty array
-        $scope.valueArray = [];
+        $scope.valueString = "0";
 
         // set keypad values
         $scope.keypad = [];
@@ -25,35 +25,30 @@ angular.module('MainController', [])
             return $scope.keypad;
         })();
 
-        // add number value to valueArray ->
+        // add number value to valueString ->
         // when a user clicks on a number, it is added to the array
-        $scope.addValueToArray = function(val) {
+        $scope.addValueToString = function(val) {
 
-            // set newVal as undefined
-            var newVal;
+            var stringVal = String(val);
 
-            // set newVal value, coerce if needed
-            if (typeof val !== 'number') {
-                newVal = Number(val);
-            } else {
-                newVal = val;
-            }
+            console.log($scope.valueString);
+            console.log(typeof $scope.valueString);
 
-            // push button's value into the valueArray
-            $scope.valueArray.push(newVal);
+            console.log(stringVal);
+            console.log(typeof stringVal);
 
-            return $scope.valueArray;
+            $scope.valueString + stringVal;
+
+            console.log($scope.valueString);
+
+            return $scope.valueString;
         };
 
         // SET VALUE when user clicks on operation method
         $scope.setVal = function(val) {
 
             // declare undefined paramValue to set param to
-            var paramValue,
-                stringNum = val;
-
-            // flatten the array into one number
-            var flattenedNum = stringNum.join("");
+            var paramValue;
 
             // if baseValue !== 0, set to $scope.x;
             // when the baseValue is being continued in the operation,
@@ -62,9 +57,9 @@ angular.module('MainController', [])
                 $scope.x = $scope.baseValue;
             }
 
-            // coerce value array into a number
-            if (typeof flattenedNum !== 'number') {
-                paramValue = Number(flattenedNum);
+            // coerce value string into a number
+            if (typeof val !== 'number') {
+                paramValue = Number(val);
             } else {
                 paramValue = val; // should never get here, but just in case...
             }
@@ -77,7 +72,7 @@ angular.module('MainController', [])
             }
 
             // set $scope.valueArray to empty array;
-            $scope.valueArray = [];
+            $scope.valueString = "0";
         };
 
         // CLEAR BASE VALUE

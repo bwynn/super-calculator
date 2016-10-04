@@ -1,11 +1,11 @@
 <div class="main-calculator-container">
     <div class="value-container">
-        <span class="screen-value">{{baseValue || valueArray}}</span>
+        <span class="screen-value">{{baseValue || valueString}}</span>
     </div>
     <div class="number-buttons-container">
         <!-- repeat buttons -->
         <div class="button-container" ng-repeat="buttonValue in keypad">
-            <button class="btn btn-val" ng-click="addValueToArray(buttonValue)">{{buttonValue}}</button>
+            <button class="btn btn-val" ng-click="addValueToString(buttonValue)">{{buttonValue}}</button>
         </div>
     </div>
     <div class="operations-container">
