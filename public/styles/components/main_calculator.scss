@@ -1,15 +1,41 @@
 .main-calculator-container {
-    border: 1px solid $highlight-mid;
+    border: $digi-borders;
+    @include flexBox;
     .value-container {
-        border: 1px solid $highlight-mid;
+        border: $digi-borders;
+        width: $full;
+        height: 4em;
+        @include flexBox;
+        align-items: center;
+        .screen-value {
+            font-size: 3em;
+            margin-left: auto;
+            padding-right: .5em;
+        }
     }
     .number-buttons-container {
-        border: 1px solid $highlight-mid;
+        border: $digi-borders;
+        @include flexBox;
+        box-sizing: border-box;
+        width: $full * .8;
+        .button-container {
+            flex: 1 1 33%;
+        }
     }
     .operations-container {
-        border: 1px solid $highlight-mid;
+        border: $digi-borders;
+        box-sizing: border-box;
+        width: $full * .2;
     }
     .evaluation-container {
-        border: 1px solid $highlight-mid;
+        border: $digi-borders;
+        width: $full;
+        @include flexBox;
+        .clear {
+            width: $full * .3;
+        }
+        .evaluate {
+            width: $full * .7;
+        }
     }
 }

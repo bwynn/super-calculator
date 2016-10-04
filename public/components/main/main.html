@@ -16,17 +16,17 @@
             <button class="btn btn-operation" ng-click="setVal(valueString, 'subtract')">&minus;</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="setVal(valueString, 'multiply')">&lowast;</button>
+            <button class="btn btn-operation" ng-click="setVal(valueString, 'multiply')">x</button>
         </div>
         <div class="button-container">
             <button class="btn btn-operation" ng-click="setVal(valueString, 'divide')">&#8725;</button>
         </div>
     </div>
     <div class="evaluation-container">
-        <div class="button-container">
+        <div class="button-container clear">
             <button class="btn btn-clear" ng-click="clearBaseValue()">CLEAR</button>
         </div>
-        <div class="button-container">
+        <div class="button-container evaluate">
             <button class="btn btn-eval" ng-click="equals()">&#61;</button>
         </div>
     </div>

@@ -188,12 +188,12 @@ describe('mainController', function() {
             expect($scope.baseValue).toEqual(6);
         });
 
-        it('should set $scope.operation to "add"', function() {
+        /*it('should set $scope.operation to "add"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.add();
             expect($scope.operation).toBe("add");
-        });
+        });*/
     });
 
     describe('$scope.subtract()', function() {
@@ -214,12 +214,12 @@ describe('mainController', function() {
 
         });
 
-        it('should set $scope.operation to "subtract"', function() {
+        /*it('should set $scope.operation to "subtract"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.subtract();
             expect($scope.operation).toBe("subtract");
-        });
+        });*/
     });
 
     describe('$scope.multiply()', function() {
@@ -239,12 +239,12 @@ describe('mainController', function() {
             expect($scope.baseValue).toEqual(15);
         });
 
-        it('should set $scope.operation to "multiply"', function() {
+        /*it('should set $scope.operation to "multiply"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.multiply();
             expect($scope.operation).toBe("multiply");
-        });
+        });*/
     });
 
     describe('$scope.divide()', function() {
@@ -264,12 +264,12 @@ describe('mainController', function() {
             expect($scope.baseValue).toEqual(12);
         });
 
-        it('should set $scope.operation to "divide"', function() {
+        /*it('should set $scope.operation to "divide"', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
             $scope.divide();
             expect($scope.operation).toBe("divide");
-        });
+        });*/
     });
 
     describe('$scope.equals()', function() {

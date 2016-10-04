@@ -2,5 +2,12 @@
 
 @mixin fullHeightWidth {
     height: $full;
-    width: $full; 
+    width: $full;
+}
+
+@mixin flexBox {
+    -webkit-display: flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
 }

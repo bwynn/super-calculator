@@ -68,8 +68,6 @@ angular.module('MainController', [])
 
             // set $scope.valueArray to empty array;
             $scope.valueString = "0";
-
-            $scope.equals();
         };
 
         // CLEAR BASE VALUE
@@ -107,7 +105,7 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x + $scope.y;
             };
             // set the case for the operation
-            $scope.operation = "add";
+            //$scope.operation = "add";
 
             return evaluate();
         };
@@ -119,7 +117,7 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x - $scope.y;
             };
             // set the case for the operation
-            $scope.operation = "subtract";
+            //$scope.operation = "subtract";
 
             return evaluate();
         };
@@ -131,7 +129,7 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x * $scope.y;
             };
             // set case for operation
-            $scope.operation = "multiply";
+            //$scope.operation = "multiply";
 
             return evaluate();
         };
@@ -143,7 +141,7 @@ angular.module('MainController', [])
                 return $scope.baseValue = $scope.x / $scope.y;
             };
             // set case for operation
-            $scope.operation = "divide";
+            //$scope.operation = "divide";
 
             return evaluate();
         };
