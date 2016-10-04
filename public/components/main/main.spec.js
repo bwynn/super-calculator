@@ -98,8 +98,9 @@ describe('mainController', function() {
         it('should concatenate the parameter number to the valueString value', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.addValueToString(9);
-            expect($scope.valueString).toEqual("9");
+            $scope.addValueToString(5);
+            expect(typeof $scope.valueString).toBe('string');
+            expect($scope.valueString).toEqual("05");
         });
     });
 

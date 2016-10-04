@@ -10,24 +10,24 @@
     </div>
     <div class="operations-container">
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="setVal(valueArray); add()">&#43;</button>
+            <button class="btn btn-operation" ng-click="setVal(valueString, 'add')">&#43;</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="setVal(valueArray); subtract()">&minus;</button>
+            <button class="btn btn-operation" ng-click="setVal(valueString, 'subtract')">&minus;</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="setVal(valueArray); multiply()">&lowast;</button>
+            <button class="btn btn-operation" ng-click="setVal(valueString, 'multiply')">&lowast;</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="setVal(valueArray); divide()">&#8725;</button>
+            <button class="btn btn-operation" ng-click="setVal(valueString, 'divide')">&#8725;</button>
         </div>
     </div>
     <div class="evaluation-container">
         <div class="button-container">
-            <button class="btn btn-clear">CLEAR</button>
+            <button class="btn btn-clear" ng-click="clearBaseValue()">CLEAR</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-eval">&#61;</button>
+            <button class="btn btn-eval" ng-click="equals()">&#61;</button>
         </div>
     </div>
 </div>

@@ -26,29 +26,24 @@ angular.module('MainController', [])
         })();
 
         // add number value to valueString ->
-        // when a user clicks on a number, it is added to the array
+        // when a user clicks on a number, it is concatenated to the valueString
         $scope.addValueToString = function(val) {
 
-            var stringVal = String(val);
+            var stringVal = String(val),
+                newStr = $scope.valueString + stringVal;
 
-            console.log($scope.valueString);
-            console.log(typeof $scope.valueString);
-
-            console.log(stringVal);
-            console.log(typeof stringVal);
-
-            $scope.valueString + stringVal;
-
-            console.log($scope.valueString);
-
-            return $scope.valueString;
+            return $scope.valueString = newStr;
         };
 
         // SET VALUE when user clicks on operation method
-        $scope.setVal = function(val) {
+        // parameter passed in is $scope.valueString **
+        $scope.setVal = function(val, operation) {
 
             // declare undefined paramValue to set param to
             var paramValue;
+
+            // set operation type
+            $scope.operation = operation;
 
             // if baseValue !== 0, set to $scope.x;
             // when the baseValue is being continued in the operation,
@@ -73,6 +68,8 @@ angular.module('MainController', [])
 
             // set $scope.valueArray to empty array;
             $scope.valueString = "0";
+
+            $scope.equals();
         };
 
         // CLEAR BASE VALUE
