@@ -18,36 +18,27 @@ describe('mainController', function() {
     });
 
     describe('$scope.x', function() {
-        it('should be undefined on page init', function() {
+        it('should be 0', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.x).not.toBeDefined();
+            expect(typeof $scope.x).toBe('number');
+            expect($scope.x).toEqual(0);
         });
     });
 
     describe('$scope.y', function() {
+        it('should be 0 on page init', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            expect($scope.y).toEqual(0);
+        });
+    });
+
+    describe('$scope.result', function() {
         it('should be undefined on page init', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.y).not.toBeDefined();
-        });
-    });
-
-    describe('$scope.baseValue', function() {
-        it('value should be a number set to 0', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            expect(typeof $scope.baseValue).toEqual('number');
-            expect($scope.baseValue).toEqual(0);
-        });
-    });
-
-    describe('$scope.valueString', function() {
-        it('should be defined as a string', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            expect(typeof $scope.valueString).toBe('string');
-            expect($scope.valueString).toEqual("0");
+            expect($scope.result).not.toBeDefined();
         });
     });
 
@@ -75,99 +66,98 @@ describe('mainController', function() {
         it('should start with 1', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.keypad[0]).toEqual(1);
+            expect($scope.keypad[0]).toEqual('1');
         });
 
         it('should end with 0', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.keypad[9]).toEqual(0);
+            expect($scope.keypad[9]).toEqual('0');
         });
     });
 
     // user interaction events -------------------------------------------------
 
-    describe('$scope.addValueToString', function() {
-
+    describe('$scope.concatString()', function() {
         it('should be defined', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.addValueToString).toBeDefined();
+            expect($scope.concatString).toBeDefined();
         });
 
-        it('should concatenate the parameter number to the valueString value', function() {
+        it('should throw an error if param isnt a string or number', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.addValueToString(5);
-            expect(typeof $scope.valueString).toBe('string');
-            expect($scope.valueString).toEqual("05");
+            $scope.keypad[0] = undefined;
+            expect(function() {$scope.concatString($scope.keypad[0]);}).toThrow(new Error("Expected either a string or a number as a parameter"));
+        });
+
+        it('should return $scope.x as a number value', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.keypad[1] = '2';
+            $scope.concatString($scope.keypad[1]);
+            expect(typeof $scope.x).toBe('number');
+            expect($scope.x).toEqual(2);
+        });
+
+        it('should assign $scope.y if $scope.operation has been defined', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.keypad[3] = '4';
+            $scope.operation = "add";
+            $scope.concatString($scope.keypad[3]);
+            expect($scope.y).toEqual(4);
         });
     });
 
-    describe('$scope.setVal()', function() {
-
+    describe('$scope.setOperator()', function() {
         it('should be defined', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.setVal).toBeDefined();
+            expect($scope.setOperator).toBeDefined();
         });
 
-        it('should set baseValue to $scope.x if defined', function() {
+        it('should return $scope.operation as a string', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.baseValue = 10;
-            $scope.setVal("23");
-            expect($scope.x).toEqual(10);
-            expect($scope.y).toEqual(23);
-        });
-
-        it('should set $scope.y to a number', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.x = 10;
-            $scope.setVal('123');
-            expect(typeof $scope.y).toBe('number');
-            expect($scope.y).toEqual(123);
-        });
-
-        it('should set valueArray to an empty array', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.setVal("123");
-            expect($scope.valueString).toEqual("0");
+            var add = "add";
+            $scope.setOperator(add);
+            expect($scope.operation).toEqual("add");
         });
     });
 
-    describe('$scope.clearBaseValue()', function() {
-
+    describe('$scope.clearResults()', function() {
         it('should be defined', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            expect($scope.clearBaseValue).toBeDefined();
+            expect($scope.clearResults).toBeDefined();
         });
 
-        it('should coerce $scope.baseValue to a number', function() {
+        it('should set $scope.x and $scope.y to 0', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.baseValue = ["3"];
-            $scope.clearBaseValue();
-            expect(typeof $scope.baseValue).toBe('number');
+            $scope.x = 3;
+            $scope.y = 4;
+            $scope.clearResults();
+            expect($scope.x).toEqual(0);
+            expect($scope.y).toEqual(0);
         });
 
-        it('should set both $scope.x and $scope.y to be undefined', function() {
+        it('should set $scope.operation to undefined', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.clearBaseValue();
-            expect($scope.x).not.toBeDefined();
-            expect($scope.y).not.toBeDefined();
+            $scope.operation = "add";
+            $scope.clearResults();
+            expect($scope.operation).not.toBeDefined();
         });
 
-        it('should set baseValue to 0', function() {
+        it('should set $scope.result to undefined', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            $scope.baseValue = 3;
-            $scope.clearBaseValue();
-            expect($scope.baseValue).toEqual(0);
+            $scope.result = 12;
+            $scope.clearResults();
+            expect($scope.result).not.toBeDefined();
         });
     });
 
@@ -185,15 +175,8 @@ describe('mainController', function() {
             $scope.x = 2;
             $scope.y = 4;
             $scope.add();
-            expect($scope.baseValue).toEqual(6);
+            expect($scope.result).toEqual(6);
         });
-
-        /*it('should set $scope.operation to "add"', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.add();
-            expect($scope.operation).toBe("add");
-        });*/
     });
 
     describe('$scope.subtract()', function() {
@@ -210,16 +193,9 @@ describe('mainController', function() {
             $scope.x = 6;
             $scope.y = 3;
             $scope.subtract();
-            expect($scope.baseValue).toEqual(3);
+            expect($scope.result).toEqual(3);
 
         });
-
-        /*it('should set $scope.operation to "subtract"', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.subtract();
-            expect($scope.operation).toBe("subtract");
-        });*/
     });
 
     describe('$scope.multiply()', function() {
@@ -236,15 +212,8 @@ describe('mainController', function() {
             $scope.x = 5;
             $scope.y = 3;
             $scope.multiply();
-            expect($scope.baseValue).toEqual(15);
+            expect($scope.result).toEqual(15);
         });
-
-        /*it('should set $scope.operation to "multiply"', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.multiply();
-            expect($scope.operation).toBe("multiply");
-        });*/
     });
 
     describe('$scope.divide()', function() {
@@ -261,15 +230,8 @@ describe('mainController', function() {
             $scope.x = 60;
             $scope.y = 5;
             $scope.divide();
-            expect($scope.baseValue).toEqual(12);
+            expect($scope.result).toEqual(12);
         });
-
-        /*it('should set $scope.operation to "divide"', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.divide();
-            expect($scope.operation).toBe("divide");
-        });*/
     });
 
     describe('$scope.equals()', function() {
@@ -287,7 +249,7 @@ describe('mainController', function() {
             $scope.x = 2;
             $scope.y = 4;
             $scope.equals();
-            expect($scope.baseValue).toEqual(6);
+            expect($scope.result).toEqual(6);
         });
 
         it('should evaluate subtract method and $scope.baseValue should return -2', function() {
@@ -297,7 +259,7 @@ describe('mainController', function() {
             $scope.x = 2;
             $scope.y = 4;
             $scope.equals();
-            expect($scope.baseValue).toEqual(-2);
+            expect($scope.result).toEqual(-2);
         });
 
         it('should evaluate multiply method and $scope.baseValue should return 15', function() {
@@ -307,7 +269,7 @@ describe('mainController', function() {
             $scope.x = 3;
             $scope.y = 5;
             $scope.equals();
-            expect($scope.baseValue).toEqual(15);
+            expect($scope.result).toEqual(15);
         });
 
         it('should evaluate divide method and $scope.baseValue should return 0.2', function() {
@@ -317,23 +279,10 @@ describe('mainController', function() {
             $scope.x = 5;
             $scope.y = 25;
             $scope.equals();
-            expect($scope.baseValue).toEqual(0.2);
+            expect($scope.result).toEqual(0.2);
         });
     });
 
-    describe('Chained events to evaluate and process values', function() {
 
-        it('should evaluate the chained events', function() {
-            var $scope = {};
-            var controller = $controller('mainController', {$scope: $scope});
-            $scope.baseValue = 12;
-            $scope.addValueToString("1");
-            $scope.addValueToString("2");
-            $scope.addValueToString("3");
-            $scope.setVal($scope.valueString);
-            expect($scope.x).toEqual(12);
-            expect($scope.y).toEqual(123);
-        });
-    });
 
 });

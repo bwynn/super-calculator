@@ -1,14 +1,14 @@
 angular.module('MainController', [])
     .controller('mainController', ['$scope', function($scope) {
 
+        // set scope.x to 0
+        $scope.x = 0;
+
+        // set scope.y to 0
+        $scope.y = 0;
+
         // set undefined $scope variables
-        $scope.x, $scope.y, $scope.operation;
-
-        // explicitly set primitive value to numeric value of 0
-        $scope.baseValue = Number(0);
-
-        // set $scope.addValue to be empty array
-        $scope.valueString = "0";
+        $scope.operation, $scope.result;
 
         // set keypad values
         $scope.keypad = [];
@@ -17,78 +17,66 @@ angular.module('MainController', [])
         (function() {
             // populate keypad array
             for (var i = 1; i < 10; i++) {
-                $scope.keypad.push(i);
+                $scope.keypad.push(String(i));
             }
             // add 0 to last index
-            $scope.keypad.push(0);
+            $scope.keypad.push(String(0));
 
             return $scope.keypad;
         })();
 
-        // add number value to valueString ->
-        // when a user clicks on a number, it is concatenated to the valueString
-        $scope.addValueToString = function(val) {
+        // Concat $scope.x with values clicked on from $scope.keypad and return a number value
+        // explicit coercion used to concatenate $scope.x or $scope.y values and then return a number
+        $scope.concatString = function(val) {
 
-            var stringVal = String(val),
-                newStr = $scope.valueString + stringVal;
+            var newStr;
 
-            return $scope.valueString = newStr;
+            // check to ensure value passed in is a string
+            if (typeof val !== 'string' && typeof val !== 'number') {
+                throw new Error("Expected either a string or a number as a parameter");
+            }
+            // determine if operation has been determined, thus
+            // assigning to either $scope.x or $scope.y
+            else if (typeof val === 'number') {
+                if ($scope.operation == undefined) {
+                    newStr = $scope.x + val;
+                    return $scope.x = Number(newStr); // coerce back to number
+                } else {
+                    newStr = $scope.y + val;
+                    return $scope.y = Number(newStr); // coerce back to number
+                }
+            } else {
+                if ($scope.operation == undefined) {
+                    newStr = String($scope.x) + val;
+                    return $scope.x = Number(newStr); // coerce back to number
+                } else {
+                    newStr = String($scope.y) + val;
+                    return $scope.y = Number(newStr); // coerce back to number
+                }
+            }
         };
 
-        // SET VALUE when user clicks on operation method
-        // parameter passed in is $scope.valueString **
-        $scope.setVal = function(val, operation) {
+        // Set an operator based on the parameter passed in
+        $scope.setOperator = function(val) {
 
-            // declare undefined paramValue to set param to
-            var paramValue;
+            // expclicity coerce the value to String
+            var operator = String(val);
 
-            // set operation type
-            $scope.operation = operation;
-
-            // if baseValue !== 0, set to $scope.x;
-            // when the baseValue is being continued in the operation,
-            // setting the baseValue to $scope.x will allow the equation to continue on
-            if (typeof $scope.baseValue !== undefined) {
-                $scope.x = $scope.baseValue;
-            }
-
-            // coerce value string into a number
-            if (typeof val !== 'number') {
-                paramValue = Number(val);
-            } else {
-                paramValue = val; // should never get here, but just in case...
-            }
-
-            // if $scope.x is defined, set $scope.y
-            if (typeof $scope.x === 'number') {
-                $scope.y = paramValue;
-            } else {
-                $scope.x = paramValue;
-            }
-
-            // set $scope.valueArray to empty array;
-            $scope.valueString = "0";
+            return $scope.operation = operator;
         };
 
-        // CLEAR BASE VALUE
-        $scope.clearBaseValue = function() {
+        // clear out the results and reset everything to 0
+        $scope.clearResults = function() {
 
-            // set both x and y values to be undefined
-            $scope.x = undefined;
-            $scope.y = undefined;
+            // set both $scope.x and $scope.y to 0
+            $scope.x = 0;
+            $scope.y = 0;
 
-            // check to make sure that baseValue type is number
-            if (typeof $scope.baseValue !== 'number') {
-                // if not, coerce to number
-                $scope.baseValue = Number();
-            }
+            // set operator to undefined
+            $scope.operation = undefined;
 
-            // if $scope.baseValue = 0 -> return
-            if ($scope.baseValue !== 0) {
-                return $scope.baseValue = 0;
-            } else {
-                return;
-            }
+            // set $scope.result to undefined
+            $scope.result = undefined;
         };
 
         // SCOPE EQUATION METHODS ----------------------------------------------
@@ -102,10 +90,8 @@ angular.module('MainController', [])
         $scope.add = function() {
             // evaluate the equation
             var evaluate = function() {
-                return $scope.baseValue = $scope.x + $scope.y;
+                return $scope.result = $scope.x + $scope.y;
             };
-            // set the case for the operation
-            //$scope.operation = "add";
 
             return evaluate();
         };
@@ -114,10 +100,8 @@ angular.module('MainController', [])
         $scope.subtract = function() {
             // evaluate equation
             var evaluate = function() {
-                return $scope.baseValue = $scope.x - $scope.y;
+                return $scope.result = $scope.x - $scope.y;
             };
-            // set the case for the operation
-            //$scope.operation = "subtract";
 
             return evaluate();
         };
@@ -126,10 +110,8 @@ angular.module('MainController', [])
         $scope.multiply = function() {
             // evaluate equation
             var evaluate = function() {
-                return $scope.baseValue = $scope.x * $scope.y;
+                return $scope.result = $scope.x * $scope.y;
             };
-            // set case for operation
-            //$scope.operation = "multiply";
 
             return evaluate();
         };
@@ -138,10 +120,8 @@ angular.module('MainController', [])
         $scope.divide = function() {
             // evaluate equation
             var evaluate = function() {
-                return $scope.baseValue = $scope.x / $scope.y;
+                return $scope.result = $scope.x / $scope.y;
             };
-            // set case for operation
-            //$scope.operation = "divide";
 
             return evaluate();
         };
