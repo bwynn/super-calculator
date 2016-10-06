@@ -1,4 +1,6 @@
 language: node_js
 node:js:
     - "5.4.x"
-#some note added in here
+before_script:
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
