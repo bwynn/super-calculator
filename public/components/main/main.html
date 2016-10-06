@@ -1,30 +1,30 @@
 <div class="main-calculator-container">
     <div class="value-container">
-        <span class="screen-value"></span>
+        <span class="screen-value">{{result}}</span>
     </div>
     <div class="number-buttons-container">
         <!-- repeat buttons -->
         <div class="button-container" ng-repeat="buttonValue in keypad">
-            <button class="btn btn-val" ng-click="">{{buttonValue}}</button>
+            <button class="btn btn-val" ng-click="concatString(buttonValue)">{{buttonValue}}</button>
         </div>
     </div>
     <div class="operations-container">
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="">&#43;</button>
+            <button class="btn btn-operation" ng-click="setOperator('add')">&#43;</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="">&minus;</button>
+            <button class="btn btn-operation" ng-click="setOperator('subtract')">&minus;</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="">x</button>
+            <button class="btn btn-operation" ng-click="setOperator('multiply')">x</button>
         </div>
         <div class="button-container">
-            <button class="btn btn-operation" ng-click="">&#8725;</button>
+            <button class="btn btn-operation" ng-click="setOperator('divide')">&#8725;</button>
         </div>
     </div>
     <div class="evaluation-container">
         <div class="button-container clear">
-            <button class="btn btn-clear" ng-click="">CLEAR</button>
+            <button class="btn btn-clear" ng-click="clearResults()">CLEAR</button>
         </div>
         <div class="button-container evaluate">
             <button class="btn btn-eval" ng-click="equals()">&#61;</button>

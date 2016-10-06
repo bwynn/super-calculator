@@ -73,7 +73,7 @@ angular.module('MainController', [])
             $scope.operation = operator;
 
             // if $scope.x and $scope.y are both defined, perform operation
-            if ($scope.x !== undefined && $scope.y !== undefined) {
+            if ($scope.x !== 0 && $scope.y !== 0) {
                 // evaluate
                 $scope.equals();
 
@@ -81,9 +81,10 @@ angular.module('MainController', [])
                 // as $scope.reset is set as $scope.x in concatString function
                 $scope.y = 0;
 
-                // return $scope.operation 
+                // return $scope.operation
                 return $scope.operation;
             } else {
+
                 // otherwise, return $scope.operation value
                 return $scope.operation;
             }
@@ -158,6 +159,7 @@ angular.module('MainController', [])
             switch ($scope.operation) {
                 case "add":
                     $scope.add();
+                    console.log($scope.result);
                     break;
                 case "subtract":
                     $scope.subtract();
