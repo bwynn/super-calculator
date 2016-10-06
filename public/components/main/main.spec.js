@@ -163,6 +163,17 @@ describe('mainController', function() {
             $scope.setOperator($scope.operation);
             expect($scope.result).toEqual(12);
         });
+
+        it('should set $scope.y to 0 if $scope.result is returned', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.operation = "multiply";
+            $scope.x = 4;
+            $scope.y = 4;
+            $scope.setOperator($scope.operation);
+            expect($scope.result).toEqual(16);
+            expect($scope.y).toEqual(0);
+        });
     });
 
     describe('$scope.clearResults()', function() {

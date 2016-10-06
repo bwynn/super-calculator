@@ -74,7 +74,14 @@ angular.module('MainController', [])
 
             // if $scope.x and $scope.y are both defined, perform operation
             if ($scope.x !== undefined && $scope.y !== undefined) {
+                // evaluate
                 $scope.equals();
+
+                // reset $scope.y for further operations
+                // as $scope.reset is set as $scope.x in concatString function
+                $scope.y = 0;
+
+                // return $scope.operation 
                 return $scope.operation;
             } else {
                 // otherwise, return $scope.operation value
