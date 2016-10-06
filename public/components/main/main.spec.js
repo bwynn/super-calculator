@@ -92,6 +92,34 @@ describe('mainController', function() {
             expect(function() {$scope.concatString($scope.keypad[0]);}).toThrow(new Error("Expected either a string or a number as a parameter"));
         });
 
+        it('should set $scope.x to equal $scope.result if $scope.result is defined', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.x = 0;
+            $scope.result = 13;
+            $scope.keypad[4] = '5';
+            $scope.concatString($scope.keypad[4]);
+            expect($scope.x).toEqual(13);
+        });
+
+        it('should set $scope.y to equal value input if $scope.result is defined', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.result = 13;
+            $scope.keypad[3] = '4';
+            $scope.concatString($scope.keypad[3]);
+            expect($scope.y).toEqual(4);
+        });
+
+        it('should return $scope.x value equal to $scope.result if result is a string', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.result = '45';
+            $scope.keypad[3] = '4';
+            $scope.concatString($scope.keypad[3]);
+            expect($scope.x).toEqual(45);
+        });
+
         it('should return $scope.x as a number value', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
@@ -121,9 +149,19 @@ describe('mainController', function() {
         it('should return $scope.operation as a string', function() {
             var $scope = {};
             var controller = $controller('mainController', {$scope: $scope});
-            var add = "add";
-            $scope.setOperator(add);
+            $scope.operation = "add";
+            $scope.setOperator($scope.operation);
             expect($scope.operation).toEqual("add");
+        });
+
+        it('should set $scope.result if $scope.x and $scope.y are defined', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.operation = "subtract";
+            $scope.x = 15;
+            $scope.y = 3;
+            $scope.setOperator($scope.operation);
+            expect($scope.result).toEqual(12);
         });
     });
 
@@ -282,7 +320,5 @@ describe('mainController', function() {
             expect($scope.result).toEqual(0.2);
         });
     });
-
-
 
 });

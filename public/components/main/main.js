@@ -38,7 +38,11 @@ angular.module('MainController', [])
             // determine if operation has been determined, thus
             // assigning to either $scope.x or $scope.y
             else if (typeof val === 'number') {
-                if ($scope.operation == undefined) {
+                if ($scope.result !== undefined) {
+                    newStr = $scope.y + val;
+                    $scope.y = Number(newStr);
+                    return $scope.x = $scope.result;
+                } else if ($scope.result == undefined && $scope.operation == undefined) {
                     newStr = $scope.x + val;
                     return $scope.x = Number(newStr); // coerce back to number
                 } else {
@@ -46,7 +50,11 @@ angular.module('MainController', [])
                     return $scope.y = Number(newStr); // coerce back to number
                 }
             } else {
-                if ($scope.operation == undefined) {
+                if ($scope.result !== undefined) {
+                    newStr = String($scope.y) + val;
+                    $scope.y = Number(newStr);
+                    return $scope.x = Number($scope.result);
+                } else if ($scope.result == undefined && $scope.operation == undefined) {
                     newStr = String($scope.x) + val;
                     return $scope.x = Number(newStr); // coerce back to number
                 } else {
@@ -61,8 +69,17 @@ angular.module('MainController', [])
 
             // expclicity coerce the value to String
             var operator = String(val);
+            // set $scope.operation value
+            $scope.operation = operator;
 
-            return $scope.operation = operator;
+            // if $scope.x and $scope.y are both defined, perform operation
+            if ($scope.x !== undefined && $scope.y !== undefined) {
+                $scope.equals();
+                return $scope.operation;
+            } else {
+                // otherwise, return $scope.operation value
+                return $scope.operation;
+            }
         };
 
         // clear out the results and reset everything to 0
