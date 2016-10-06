@@ -4,7 +4,7 @@
   "description": "This Angular Calculator application is a standalone angular application that running on Angular 1.5, with a Node and Express back end. There is no database attached to this application, as it is intended to be utilized on a case-by-case basis.",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers Chrome"
+    "test": "./node_modules/.bin/karma start --single-run --browsers CHROME_BIN"
   },
   "author": "Brian Wynn",
   "license": "ISC",
