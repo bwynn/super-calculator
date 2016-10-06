@@ -13,6 +13,9 @@ angular.module('MainController', [])
         // set keypad values
         $scope.keypad = [];
 
+        // set screen display value
+        $scope.screenValue;
+
         // iife to populate and manipulate array values for population
         (function() {
             // populate keypad array
@@ -40,26 +43,32 @@ angular.module('MainController', [])
             else if (typeof val === 'number') {
                 if ($scope.result !== undefined) {
                     newStr = $scope.y + val;
-                    $scope.y = Number(newStr);
-                    return $scope.x = $scope.result;
+                    $scope.y = Number(newStr); // coerce $scope.y to a number explicitly
+                    $scope.screenValue = $scope.y; // set screenValue to $scope.y
+                    return $scope.x = $scope.result; // allows for carry over from previous operations
                 } else if ($scope.result == undefined && $scope.operation == undefined) {
                     newStr = $scope.x + val;
-                    return $scope.x = Number(newStr); // coerce back to number
+                    $scope.x = Number(newStr); // coerce back to number
+                    return $scope.screenValue = $scope.x; // set screenValue
                 } else {
                     newStr = $scope.y + val;
-                    return $scope.y = Number(newStr); // coerce back to number
+                    $scope.y = Number(newStr); // coerce back to number
+                    return $scope.screenValue = $scope.y; // set screenValue to $scope.y
                 }
             } else {
                 if ($scope.result !== undefined) {
                     newStr = String($scope.y) + val;
                     $scope.y = Number(newStr);
-                    return $scope.x = Number($scope.result);
+                    $scope.screenValue = $scope.y; // set screenValue to $scope.y
+                    return $scope.x = Number($scope.result); // allow for carry over
                 } else if ($scope.result == undefined && $scope.operation == undefined) {
                     newStr = String($scope.x) + val;
-                    return $scope.x = Number(newStr); // coerce back to number
+                    $scope.x = Number(newStr); // coerce back to number
+                    return $scope.screenValue = $scope.x; // set screenValue to $scope.x
                 } else {
                     newStr = String($scope.y) + val;
-                    return $scope.y = Number(newStr); // coerce back to number
+                    $scope.y = Number(newStr); // coerce back to number
+                    return $scope.screenValue = $scope.y; // return screenValue = $scope.x
                 }
             }
         };
@@ -102,6 +111,9 @@ angular.module('MainController', [])
 
             // set $scope.result to undefined
             $scope.result = undefined;
+
+            // set screenValue back to undefined 
+            $scope.screenValue = undefined;
         };
 
         // SCOPE EQUATION METHODS ----------------------------------------------
@@ -115,7 +127,8 @@ angular.module('MainController', [])
         $scope.add = function() {
             // evaluate the equation
             var evaluate = function() {
-                return $scope.result = $scope.x + $scope.y;
+                $scope.result = $scope.x + $scope.y;
+                return $scope.screenValue = $scope.result;
             };
 
             return evaluate();
@@ -125,7 +138,8 @@ angular.module('MainController', [])
         $scope.subtract = function() {
             // evaluate equation
             var evaluate = function() {
-                return $scope.result = $scope.x - $scope.y;
+                $scope.result = $scope.x - $scope.y;
+                return $scope.screenValue = $scope.result;
             };
 
             return evaluate();
@@ -135,7 +149,8 @@ angular.module('MainController', [])
         $scope.multiply = function() {
             // evaluate equation
             var evaluate = function() {
-                return $scope.result = $scope.x * $scope.y;
+                $scope.result = $scope.x * $scope.y;
+                return $scope.screenValue = $scope.result;
             };
 
             return evaluate();
@@ -145,7 +160,8 @@ angular.module('MainController', [])
         $scope.divide = function() {
             // evaluate equation
             var evaluate = function() {
-                return $scope.result = $scope.x / $scope.y;
+                $scope.result = $scope.x / $scope.y;
+                return $scope.screenValue = $scope.result;
             };
 
             return evaluate();
@@ -159,7 +175,6 @@ angular.module('MainController', [])
             switch ($scope.operation) {
                 case "add":
                     $scope.add();
-                    console.log($scope.result);
                     break;
                 case "subtract":
                     $scope.subtract();

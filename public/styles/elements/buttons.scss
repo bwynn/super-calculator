@@ -1,5 +1,21 @@
 button {
     width: $full;
     height: 2em;
-    font-size: 1.5em; 
+    font-size: 1.5em;
+    margin: .4em .3em;
+    border-radius: .2em;
+    border: 1px solid $highlight-dark;
+    box-sizing: border-box;
+    background-color: $highlight-light;
+    @include fontDetails;
+    @include transitions;
+    &:hover {
+        background-color: $primary-dark;
+        color: #fff;
+        cursor: pointer;
+    }
+}
+
+.button-container {
+    box-sizing: border-box;
 }

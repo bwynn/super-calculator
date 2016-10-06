@@ -1,29 +1,59 @@
+@import "https://fonts.googleapis.com/css?family=Lato:200,300,400|Share+Tech+Mono";
+body {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 24px; }
+
 body {
   height: 100%;
   width: 100%;
   background-color: #151818;
   color: #008484;
-  margin: 0;
-  font-size: 24px; }
+  margin: 0; }
+  body h1 {
+    margin: 0;
+    line-height: 1; }
 
 .calc-wrap {
   max-width: 600px;
   margin: 0 auto;
   width: 100%; }
 
+.global-header .global-title {
+  font-family: 'Lato', sans-serif;
+  margin: 1em;
+  text-align: center; }
+  .global-header .global-title span {
+    font-size: .75em;
+    font-weight: 200; }
+
 button {
   width: 100%;
   height: 2em;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  margin: .4em .3em;
+  border-radius: .2em;
+  border: 1px solid #006464;
+  box-sizing: border-box;
+  background-color: #008484;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 24px;
+  transition: .05s all ease-in-out; }
+  button:hover {
+    background-color: #151818;
+    color: #fff;
+    cursor: pointer; }
+
+.button-container {
+  box-sizing: border-box; }
 
 .main-calculator-container {
-  border: 1px solid #007272;
+  border: 1px solid #006464;
   -webkit-display: flex;
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap; }
   .main-calculator-container .value-container {
-    border: 1px solid #007272;
+    border: 1px solid #006464;
     width: 100%;
     height: 4em;
     -webkit-display: flex;
@@ -36,7 +66,7 @@ button {
       margin-left: auto;
       padding-right: .5em; }
   .main-calculator-container .number-buttons-container {
-    border: 1px solid #007272;
+    border: 1px solid #006464;
     -webkit-display: flex;
     display: flex;
     -webkit-flex-flow: row wrap;
@@ -45,12 +75,18 @@ button {
     width: 80%; }
     .main-calculator-container .number-buttons-container .button-container {
       flex: 1 1 33%; }
+      .main-calculator-container .number-buttons-container .button-container .btn-val {
+        width: 90%; }
+      .main-calculator-container .number-buttons-container .button-container:last-child .btn-val {
+        width: 96.5%; }
   .main-calculator-container .operations-container {
-    border: 1px solid #007272;
+    border: 1px solid #006464;
     box-sizing: border-box;
     width: 20%; }
+    .main-calculator-container .operations-container .button-container .btn-operation {
+      width: 87%; }
   .main-calculator-container .evaluation-container {
-    border: 1px solid #007272;
+    border: 1px solid #006464;
     width: 100%;
     -webkit-display: flex;
     display: flex;
@@ -58,7 +94,11 @@ button {
     flex-flow: row wrap; }
     .main-calculator-container .evaluation-container .clear {
       width: 30%; }
+      .main-calculator-container .evaluation-container .clear .btn-clear {
+        width: 95%; }
     .main-calculator-container .evaluation-container .evaluate {
       width: 70%; }
+      .main-calculator-container .evaluation-container .evaluate .btn-eval {
+        width: 96.5%; }
 
 /*# sourceMappingURL=main.css.map */

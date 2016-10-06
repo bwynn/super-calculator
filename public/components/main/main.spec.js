@@ -50,6 +50,14 @@ describe('mainController', function() {
         });
     });
 
+    describe('$scope.screenValue', function() {
+        it('should be undefined on page init', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            expect($scope.screenValue).not.toBeDefined();
+        });
+    });
+
     describe('$scope.keypad', function() {
         it('should be defined', function() {
             var $scope = {};
@@ -91,6 +99,14 @@ describe('mainController', function() {
             $scope.keypad[0] = undefined;
             expect(function() {$scope.concatString($scope.keypad[0]);}).toThrow(new Error("Expected either a string or a number as a parameter"));
         });
+
+        it('should set $scope.screenValue to equal either $scope.x or $scope.y', function() {
+            var $scope = {};
+            var controller = $controller('mainController', {$scope: $scope});
+            $scope.keypad[3] = '4';
+            $scope.concatString($scope.keypad[3]);
+            expect($scope.screenValue).toEqual($scope.x);
+        }); 
 
         it('should set $scope.x to equal $scope.result if $scope.result is defined', function() {
             var $scope = {};

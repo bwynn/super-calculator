@@ -20,12 +20,25 @@
         width: $full * .8;
         .button-container {
             flex: 1 1 33%;
+            .btn-val {
+                width: $full * .9;
+            }
+            &:last-child {
+                .btn-val {
+                    width: $full * .965;
+                }
+            }
         }
     }
     .operations-container {
         border: $digi-borders;
         box-sizing: border-box;
         width: $full * .2;
+        .button-container {
+            .btn-operation {
+                width: $full * .87;
+            }
+        }
     }
     .evaluation-container {
         border: $digi-borders;
@@ -33,9 +46,15 @@
         @include flexBox;
         .clear {
             width: $full * .3;
+            .btn-clear {
+                width: $full * .95;
+            }
         }
         .evaluate {
             width: $full * .7;
+            .btn-eval {
+                width: $full * .965;
+            }
         }
     }
 }
