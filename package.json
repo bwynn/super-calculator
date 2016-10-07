@@ -6,11 +6,14 @@
   "scripts": {
     "test": "./node_modules/.bin/karma start --browsers Firefox --single-run"
   },
+  "engine": {
+    "node": "6.2.2"
+  },
   "author": "Brian Wynn",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bwynn/super-calculator.git"  
+    "url": "https://github.com/bwynn/super-calculator.git"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
