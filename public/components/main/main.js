@@ -88,8 +88,12 @@ angular.module('MainController', [])
               // and if $scope.operation = subtract
               if ($scope.operation == "subtract") {
                 var newVal = $scope.x * -1;
+                // set $scope.operation back to undefined
+                $scope.operation = undefined;
                 // turn $scope.x into a negative value
-                return $scope.x = newVal;
+                $scope.x = newVal;
+
+                return $scope.screenValue = $scope.x;
               } else {
                   // set $scope.operation value
                   $scope.operation = operator;
