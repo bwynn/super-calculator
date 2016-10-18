@@ -106,7 +106,7 @@ describe('mainController', function() {
             $scope.keypad[3] = '4';
             $scope.concatString($scope.keypad[3]);
             expect($scope.screenValue).toEqual($scope.x);
-        }); 
+        });
 
         it('should set $scope.x to equal $scope.result if $scope.result is defined', function() {
             var $scope = {};

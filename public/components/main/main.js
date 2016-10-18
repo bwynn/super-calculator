@@ -50,6 +50,8 @@ angular.module('MainController', [])
                     newStr = $scope.x + val;
                     $scope.x = Number(newStr); // coerce back to number
                     return $scope.screenValue = $scope.x; // set screenValue
+                } else if ($scope.result && $scope.operation) {
+                  // set $scope.y and run $scope.equals
                 } else {
                     newStr = $scope.y + val;
                     $scope.y = Number(newStr); // coerce back to number
@@ -65,6 +67,8 @@ angular.module('MainController', [])
                     newStr = String($scope.x) + val;
                     $scope.x = Number(newStr); // coerce back to number
                     return $scope.screenValue = $scope.x; // set screenValue to $scope.x
+                } else if ($scope.result && $scope.operation) {
+                  // set $scope.y and run $scope.equals
                 } else {
                     newStr = String($scope.y) + val;
                     $scope.y = Number(newStr); // coerce back to number
@@ -78,11 +82,20 @@ angular.module('MainController', [])
 
             // expclicity coerce the value to String
             var operator = String(val);
-            // set $scope.operation value
-            $scope.operation = operator;
 
             // if $scope.x and $scope.y are both defined, perform operation
             if ($scope.x !== 0 && $scope.y !== 0) {
+
+                // set $scope.operation value
+                $scope.operation = operator;
+
+                // if $scope.result is defined, modify the operation and
+                // set $scope.y = 0, do not return $scope.equals
+                if ($scope.result !== undefined) {
+                  return $scope.operation = operator; // set operator
+                }
+
+
                 // evaluate
                 $scope.equals();
 
@@ -92,7 +105,17 @@ angular.module('MainController', [])
 
                 // return $scope.operation
                 return $scope.operation;
+            } else if ($scope.x == 0 && $scope.y == 0) { // set a negative value operator if $scope.x = 0
+
+              // set operation to a - string value
+              if (operator == 'subtract') {
+                var val = "-";
+                    $scope.operation = "-" + String($scope.x);
+                    return $scope.concatString($scope.operation);
+              }
             } else {
+                // set $scope.operation value
+                $scope.operation = operator;
 
                 // otherwise, return $scope.operation value
                 return $scope.operation;
@@ -112,7 +135,7 @@ angular.module('MainController', [])
             // set $scope.result to undefined
             $scope.result = undefined;
 
-            // set screenValue back to undefined 
+            // set screenValue back to undefined
             $scope.screenValue = undefined;
         };
 
