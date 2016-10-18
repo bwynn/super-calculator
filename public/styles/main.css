@@ -60,7 +60,8 @@ button {
     display: flex;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
-    align-items: center; }
+    align-items: center;
+    overflow: scroll; }
     .main-calculator-container .value-container .screen-value {
       font-size: 3em;
       margin-left: auto;

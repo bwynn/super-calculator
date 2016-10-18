@@ -45,16 +45,19 @@ angular.module('MainController', [])
                     newStr = $scope.y + val;
                     $scope.y = Number(newStr); // coerce $scope.y to a number explicitly
                     $scope.screenValue = $scope.y; // set screenValue to $scope.y
+
                     return $scope.x = $scope.result; // allows for carry over from previous operations
                 } else if ($scope.result == undefined && $scope.operation == undefined) {
                     newStr = $scope.x + val;
                     $scope.x = Number(newStr); // coerce back to number
+
                     return $scope.screenValue = $scope.x; // set screenValue
                 } else if ($scope.result && $scope.operation) {
                   // set $scope.y and run $scope.equals
                 } else {
                     newStr = $scope.y + val;
                     $scope.y = Number(newStr); // coerce back to number
+
                     return $scope.screenValue = $scope.y; // set screenValue to $scope.y
                 }
             } else {
@@ -62,16 +65,19 @@ angular.module('MainController', [])
                     newStr = String($scope.y) + val;
                     $scope.y = Number(newStr);
                     $scope.screenValue = $scope.y; // set screenValue to $scope.y
+
                     return $scope.x = Number($scope.result); // allow for carry over
                 } else if ($scope.result == undefined && $scope.operation == undefined) {
                     newStr = String($scope.x) + val;
                     $scope.x = Number(newStr); // coerce back to number
+
                     return $scope.screenValue = $scope.x; // set screenValue to $scope.x
                 } else if ($scope.result && $scope.operation) {
                   // set $scope.y and run $scope.equals
                 } else {
                     newStr = String($scope.y) + val;
                     $scope.y = Number(newStr); // coerce back to number
+
                     return $scope.screenValue = $scope.y; // return screenValue = $scope.x
                 }
             }
@@ -87,9 +93,19 @@ angular.module('MainController', [])
             if ($scope.x == $scope.screenValue || $scope.x == 0) {
               // and if $scope.operation = subtract
               if (operator == "subtract") {
-                var newVal = $scope.x * -1;
+                var operand = "-";
 
-                // turn $scope.x into a negative value
+                // if $scope.x is a string or is a negative value - set $scope.operation
+                if (typeof $scope.x == 'string' || $scope.x < 0) {
+                    $scope.operation = operator;
+
+                    return $scope.operation;
+                }
+                // coerce $scope.x to string and concat the negative operator
+                var newVal = operand.concat(String($scope.x));
+
+                // turn $scope.x into a negative value - as a string - concatString function
+                // will handle coercion back to a number value
                 $scope.x = newVal;
 
                 return $scope.screenValue = $scope.x;
@@ -121,6 +137,10 @@ angular.module('MainController', [])
                 // return $scope.operation
                 return $scope.operation = operator;
             }
+        };
+
+        $scope.resetOperation = function() {
+            return $scope.operation = undefined;
         };
 
         // clear out the results and reset everything to 0

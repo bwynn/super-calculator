@@ -187,7 +187,8 @@ describe('mainController', function() {
           $scope.x = 3;
           $scope.operation = "subtract";
           $scope.setOperator($scope.operation);
-          expect($scope.x).toEqual(-3);
+          expect(typeof $scope.x).toBe('string');
+          expect($scope.x).toEqual('-3');
         });
 
         it('should set $scope.x to negative value when operator is defined', function() {
@@ -196,7 +197,8 @@ describe('mainController', function() {
           $scope.x = 0;
           $scope.operation = "subtract";
           $scope.setOperator($scope.operation);
-          expect($scope.x).toEqual(-0);
+          expect(typeof $scope.x).toBe('string'); 
+          expect($scope.x).toEqual('-0');
         });
 
         it('should set $scope.y to 0 if $scope.result is returned', function() {
