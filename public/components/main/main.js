@@ -86,10 +86,9 @@ angular.module('MainController', [])
             // if scope x  equals screen value or is equal to 0
             if ($scope.x == $scope.screenValue || $scope.x == 0) {
               // and if $scope.operation = subtract
-              if ($scope.operation == "subtract") {
+              if (operator == "subtract") {
                 var newVal = $scope.x * -1;
-                // set $scope.operation back to undefined
-                $scope.operation = undefined;
+
                 // turn $scope.x into a negative value
                 $scope.x = newVal;
 
@@ -105,13 +104,10 @@ angular.module('MainController', [])
             // if $scope.x and $scope.y are both defined, perform operation
             else if ($scope.x !== 0 && $scope.y !== 0) {
 
-                // set $scope.operation value
-                $scope.operation = operator;
-
                 // if $scope.result is defined, modify the operation and
                 // set $scope.y = 0, do not return $scope.equals
                 if ($scope.result !== undefined) {
-                  return $scope.operation = operator; // set operator
+                  return $scope.operation = operator; // set operator and return
                 }
 
 
@@ -123,7 +119,7 @@ angular.module('MainController', [])
                 $scope.y = 0;
 
                 // return $scope.operation
-                return $scope.operation;
+                return $scope.operation = operator;
             }
         };
 
