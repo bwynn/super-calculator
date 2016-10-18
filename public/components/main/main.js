@@ -83,8 +83,23 @@ angular.module('MainController', [])
             // expclicity coerce the value to String
             var operator = String(val);
 
+            // if scope x  equals screen value or is equal to 0
+            if ($scope.x == $scope.screenValue || $scope.x == 0) {
+              // and if $scope.operation = subtract
+              if ($scope.operation == "subtract") {
+                var newVal = $scope.x * -1;
+                // turn $scope.x into a negative value
+                return $scope.x = newVal;
+              } else {
+                  // set $scope.operation value
+                  $scope.operation = operator;
+
+                  // otherwise, return $scope.operation value
+                  return $scope.operation;
+              }
+            }
             // if $scope.x and $scope.y are both defined, perform operation
-            if ($scope.x !== 0 && $scope.y !== 0) {
+            else if ($scope.x !== 0 && $scope.y !== 0) {
 
                 // set $scope.operation value
                 $scope.operation = operator;
@@ -104,20 +119,6 @@ angular.module('MainController', [])
                 $scope.y = 0;
 
                 // return $scope.operation
-                return $scope.operation;
-            } else if ($scope.x == 0 && $scope.y == 0) { // set a negative value operator if $scope.x = 0
-
-              // set operation to a - string value
-              if (operator == 'subtract') {
-                var val = "-";
-                    $scope.operation = "-" + String($scope.x);
-                    return $scope.concatString($scope.operation);
-              }
-            } else {
-                // set $scope.operation value
-                $scope.operation = operator;
-
-                // otherwise, return $scope.operation value
                 return $scope.operation;
             }
         };
